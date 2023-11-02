@@ -113,10 +113,10 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 
 - In your MPLAB application copy and paste the entire code from the mention file with link given below.
 
-	- [rnbd.h](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_OOB_PAIRING_NFC/blob/main/firmware/src/app.h).
-	- [rnbd.c](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_OOB_PAIRING_NFC/blob/main/firmware/src/app.c).
-	- [heartrate9_example.c](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_OOB_PAIRING_NFC/blob/main/firmware/src/app_ble/app_ble.c).
-	- [main_sam_e51_cnano.c](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_OOB_PAIRING_NFC/blob/main/firmware/src/app_ble/app_ble_handler.c).
+	- [rnbd.h](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.h).
+	- [rnbd.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.c).
+	- [heartrate9_example.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/click_routines/heartrate9/heartrate9_example.c).
+	- [main_sam_e51_cnano.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/main_sam_e51_cnano.c).
 		
 **Step 8** - Clean and build the project. To run the project, select "Make and program device" button.
 	
@@ -145,6 +145,6 @@ Follow the steps provided in the link to [Build and program the application](htt
 
 ## 7. Run the demo<a name="step7">
 
-- After programming the board, the expected application behavior is shown in the below [video](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_OOB_PAIRING_NFC/blob/main/docs/BLE_OOB-min.gif).
+- After programming the board, the expected application behavior is shown in the below [video](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/docs/demo.gif).
 
 ![Alt Text](docs/demo.gif)
