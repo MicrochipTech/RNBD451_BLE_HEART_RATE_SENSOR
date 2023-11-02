@@ -46,7 +46,7 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 
 ## 3. Hardware Setup<a name="step3">
 
-- Connect the HEART RATE 9 CLICK Board to the Mikroe header 1 and RNBD451 Add-on Board to the Mikroe header 2 and connect the SAM E51 CURIOSITY BOARD as shown below.
+- Connect the HEART RATE 9 Click Board to the Mikro Bus 1 and RNBD451 Add-on Board to the Mikro Bus 2 and connect the SAM E51 CURIOSITY BOARD as shown below.
 
 ![](docs/hardware.png)
 
