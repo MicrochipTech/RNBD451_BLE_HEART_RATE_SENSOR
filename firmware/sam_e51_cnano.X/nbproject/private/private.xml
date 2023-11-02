@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/rnbd/rnbd.h</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/config/sam_e51_cnano/rnbd/rnbd_interface.h</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/config/sam_e51_cnano/rnbd/rnbd_interface.c</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/click_routines/heartrate9/heartrate9_example.c</file>
+            <file>file:/C:/Program%20Files/Microchip/xc32/v4.21/pic32c/include/musl/string.h</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/main_sam_e51_cnano.c</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/config/sam_e51_cnano/definitions.h</file>
+            <file>file:/D:/SAME51_HEART_RATE/firmware/src/rnbd/rnbd.c</file>
+        </group>
+    </open-files>
+</project-private>
