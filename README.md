@@ -75,11 +75,11 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 | Tip | New users of MPLAB Code Configurator are recommended to go through the [overview](https://onlinedocs.microchip.com/pr/GUID-1F7007B8-9A46-4D03-AEED-650357BA760D-en-US-6/index.html?GUID-AFAB9227-B10C-4FAE-9785-98474664B50A) |
 | :- | :- |
 
-**Step 1** - Connect the [SAM E51 CURIOSITY NANO BOARD](https://www.microchip.com/en-us/development-tool/ev76s68a) to the device/system using a micro-USB cable.
+**Step 1** - Connect the SAM E51 CURIOSITY NANO BOARD to the device/system using a micro-USB cable.
 
 **Step 2** - Clone or Download the [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and open it in MPLAB X IDE.
 
-**Step 3** - Run the MPLAB Code Configurator and the project graph for heart rate application is shown below.
+**Step 3** - Open MCC project graph and the project graph for heart rate application is shown below.
 
 ![](docs/project_graph_prev.png)
 
@@ -111,7 +111,7 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 
 **Step 7** - Change the following Code as mentioned below.
 
-- In your MPLAB application copy and paste the entire code from the mention file with link given below.
+- Copy the mentioned files from this repository by navigating to the location mentioned below and paste it your project folder.
 
 	- [rnbd.h](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.h).
 	- [rnbd.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.c).
