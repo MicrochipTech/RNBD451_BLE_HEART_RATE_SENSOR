@@ -70,7 +70,7 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 
 ## 5. Harmony MCC Configuration<a name="step5">
 
-### Getting started with adding [RNBD451 Add-on Board](https://www.microchip.com/en-us/development-tool/ev25f14a) to [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9).
+### Getting started with adding RNBD451 Add-on Board to Heart Rate application with SAME51.
 
 | Tip | New users of MPLAB Code Configurator are recommended to go through the [overview](https://onlinedocs.microchip.com/pr/GUID-1F7007B8-9A46-4D03-AEED-650357BA760D-en-US-6/index.html?GUID-AFAB9227-B10C-4FAE-9785-98474664B50A) |
 | :- | :- |
