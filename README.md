@@ -31,7 +31,7 @@ Checkout the <a href="https://microchipsupport.force.com/s/" target="_blank">Tec
 
 ## 1. Introduction<a name="step1">
 
-This application demonstrates how to add the [RNBD451 Add-on Board](https://www.microchip.com/en-us/development-tool/ev25f14a) to an existing application via UART and to implement a BLE heart rate sensor using [HEART RATE 9 CLICK](https://www.mikroe.com/heart-rate-9-click). Here we have taken an existing [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and added the [RNBD451 Add-on Board](https://www.microchip.com/en-us/development-tool/ev25f14a) to make it wireless. The RN commands are sent from the [SAM E51 CURIOSITY NANO BOARD](https://www.microchip.com/en-us/development-tool/ev76s68a) to establish the heart rate BLE sensor application, which can be viewed in the [MBD](https://play.google.com/store/apps/details?id=com.microchip.bluetooth.data&hl=en_IN&gl=US) application.
+This application demonstrates how to add the RNBD451 Add-on Board to an existing application via UART and to implement a BLE heart rate sensor using HEART RATE 9 CLICK. Here we have taken an existing [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and added the RNBD451 Add-on Board to make it wireless. The RN commands are sent from the SAM E51 CURIOSITY NANO BOARD to establish the heart rate BLE sensor application, which can be viewed in the MBD application.
 
 ![](docs/app.png)
 
@@ -111,12 +111,20 @@ This application demonstrates how to add the [RNBD451 Add-on Board](https://www.
 
 **Step 7** - Change the following Code as mentioned below.
 
-- Copy the mentioned files from this repository by navigating to the location mentioned below and paste it your project folder.
+- Copy the mentioned folder/file from this repository by navigating to the location linked below and paste it your project folder.
 
-	- [rnbd.h](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.h).
-	- [rnbd.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd/rnbd.c).
-	- [heartrate9_example.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/click_routines/heartrate9/heartrate9_example.c).
-	- [main_sam_e51_cnano.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/main_sam_e51_cnano.c).
+	- Copy the folder [rnbd](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/rnbd) and replace it.
+	
+	- Copy the file [heartrate9_example.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/click_routines/heartrate9/heartrate9_example.c) and replace it.
+	
+		![](docs/heartrate_ex.png)
+		
+		- In this file the Void function is changed to return function which returns the heart rate value
+		
+	- Copy the file [main_sam_e51_cnano.c](https://github.com/MicrochipTech/RNBD451_BLE_HEART_RATE_SENSOR/blob/main/firmware/src/main_sam_e51_cnano.c) and replace it.
+		
+		- In this file the RNBD_heartrate_example() function initializes the RNBD451 Module and sends the heart rate value to the BLE Heart Rate Profile.
+		
 		
 **Step 8** - Clean and build the project. To run the project, select "Make and program device" button.
 	

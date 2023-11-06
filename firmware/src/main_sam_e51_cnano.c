@@ -56,9 +56,9 @@
 
 const char DevName[]="RNBD451_HEART_RATE";
 uint8_t service_uuid=0xC0;
-bool init;
-bool data;
-extern char HR_data[];
+bool Err;
+int8_t heart_rate;
+char HR_data[2] = ""; 
 
 typedef enum
 {
@@ -68,6 +68,7 @@ typedef enum
     RNBD_CMD,
     RNBD_CMD1,
     RNBD_CMD2,
+    RNBD_CMD3,
     RNBD_SET_NAME,
     RNBD_SET_PROFILE,
     RNBD_SET_APPEARANCE,
@@ -103,130 +104,141 @@ static void Switch_Press_Handler(uintptr_t context)
 // *****************************************************************************
 // *****************************************************************************
 
-void RNBD_HEART_RATE(void)
+void RNBD_heartrate_example(void)
 {
     switch(rnbd_state.state)
     {
         case RNBD_INIT:
         {
-            if(init)
+            Err=RNBD_Init();
+            if(Err)
             {
-                data=false;
-                data=RNBD_EnterCmdMode();
-                printf("Initialized RNBD\r\n");
+                Err=false;
+                printf("RNBD451_INITIALIZED\r\n");
+                rnbd_state.state=RNBD_CMD;        
+            }
+        }
+        break;
+        case RNBD_CMD:
+        {
+            Err=RNBD_EnterCmdMode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
                 rnbd_state.state=RNBD_FACTORY_RESET;
             }
         }
         break;
         case RNBD_FACTORY_RESET:
         {
-            if(data)
+            Err=RNBD_FactoryReset();
+            if(Err)
             {
-                data=false;
-                data=RNBD_FactoryReset();
-                printf("Entered CMD\r\n");
-                rnbd_state.state=RNBD_CMD;
-            }
-        }
-        break;
-        case RNBD_CMD:
-        {
-            if(data)
-            {
-                data=false;
-                data=RNBD_EnterCmdMode();
+                Err=false;                
                 printf("Factory Reset Done\r\n");
-                rnbd_state.state=RNBD_SET_NAME;
-            }
-        }
-        break;
-        case RNBD_SET_NAME:
-        {
-            if(data)
-            {
-                data=false;
-                data=RNBD_SetName(DevName,strlen(DevName));
-                printf("Entered CMD\r\n");
-                rnbd_state.state=RNBD_SET_PROFILE;
-            }
-        }
-        case RNBD_SET_PROFILE:
-        {
-            if(data)
-            {
-                data=false;
-                data=RNBD_SetServiceBitmap(service_uuid);
-                printf("Name Set\r\n");
-                rnbd_state.state=RNBD_SET_APPEARANCE;
-            }
-        }
-        break;
-        break;
-        case RNBD_SET_APPEARANCE:
-        {
-            if(data)
-            {
-                data=false;
-                char appearance[]="0340";
-                data=RNBD_SetAppearance(appearance,strlen(appearance));
-                printf("Device Name Set\r\n");
-                rnbd_state.state=RNBD_REBOOT;
-            }
-        }
-        break;
-        case RNBD_REBOOT:
-        {
-            if(data)
-            {
-                data=false;
-                data=RNBD_RebootCmd();
-                printf("Appearance Set\r\n");
                 rnbd_state.state=RNBD_CMD1;
             }
         }
         break;
         case RNBD_CMD1:
         {
-            if(data)
+            Err=RNBD_EnterCmdMode();
+            if(Err)
             {
-                data=false;
-                data=RNBD_EnterCmdMode();
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
+                rnbd_state.state=RNBD_SET_NAME;
+            }
+        }
+        break;
+        case RNBD_SET_NAME:
+        {
+            Err=RNBD_SetName(DevName,strlen(DevName));
+            if(Err)
+            {
+                Err=false;                
+                printf("Device Name Set\r\n");
+                rnbd_state.state=RNBD_SET_PROFILE;
+            }
+        }
+        break;
+        case RNBD_SET_PROFILE:
+        {
+            Err=RNBD_SetServiceBitmap(service_uuid);
+            if(Err)
+            {
+                Err=false;                
+                printf("Service Bitmap Set\r\n");
+                rnbd_state.state=RNBD_SET_APPEARANCE;
+            }
+        }        
+        break;
+        case RNBD_SET_APPEARANCE:
+        {
+            char appearance[]="0340";
+            Err=RNBD_SetAppearance(appearance,strlen(appearance));
+            if(Err)
+            {
+                Err=false;                
+                printf("Appearance Set\r\n");
+                rnbd_state.state=RNBD_REBOOT;
+            }
+        }
+        break;
+        case RNBD_REBOOT:
+        {
+            Err=RNBD_RebootCmd();
+            if(Err)
+            {
+                Err=false;                
                 printf("Reboot Completed\r\n");
+                rnbd_state.state=RNBD_CMD2;
+            }
+        }
+        break;
+        case RNBD_CMD2:
+        {
+            Err=RNBD_EnterCmdMode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
                 rnbd_state.state=RNBD_SERVICE_UUID;
             }
         }
         break;
         case RNBD_SERVICE_UUID:
         {
-            if(data)
+            char PS[]="180D";
+            Err=RNBD_SetServiceUUID(PS,strlen(PS));
+            if(Err)
             {
-                data=false;
-                char PS[]="180D";
-                data=RNBD_SetServiceUUID(PS,strlen(PS));
-                printf("Entered CMD\r\n");
+                Err=false;                
+                printf("Service UUID Set\r\n");
                 rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS;
             }
         }
         break;
         case RNBD_SERVICE_CHARACTERISTICS:
         {
-            if(data)
+            char PC[]="2A37,10,05";
+            Err=RNBD_SetServiceCharacteristic(PC,strlen(PC));
+            if(Err)
             {
-                data=false;
-                char PC[]="2A37,10,05";
-                data=RNBD_SetServiceCharacteristic(PC,strlen(PC));
-                printf("Service UUID Set\r\n");
+                Err=false;                
+                printf("Service Characteristics Set\r\n");
                 rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS1;
             }
         }
         break;
         case RNBD_SERVICE_CHARACTERISTICS1:
         {
-            if(data)
+            char PC1[]="2A38,02,05";
+            Err=RNBD_SetServiceCharacteristic(PC1,strlen(PC1));
+            if(Err)
             {
-                data=false;
-                char PC1[]="2A38,02,05";
-                data=RNBD_SetServiceCharacteristic(PC1,strlen(PC1));
+                Err=false;                
                 printf("Service Characteristics Set\r\n");
                 rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS2;
             }
@@ -234,11 +246,11 @@ void RNBD_HEART_RATE(void)
         break;
         case RNBD_SERVICE_CHARACTERISTICS2:
         {
-            if(data)
+            char PC2[]="2A39,08,05";
+            Err=RNBD_SetServiceCharacteristic(PC2,strlen(PC2));
+            if(Err)
             {
-                data=false;
-                char PC2[]="2A39,08,05";
-                data=RNBD_SetServiceCharacteristic(PC2,strlen(PC2));
+                Err=false;                
                 printf("Service Characteristics Set\r\n");
                 rnbd_state.state=RNBD_REBOOT1;
             }
@@ -246,36 +258,44 @@ void RNBD_HEART_RATE(void)
         break;
         case RNBD_REBOOT1:
         {
-            if(data)
+            Err=RNBD_RebootCmd();
+            if(Err)
             {
-                data=false;
-                data=RNBD_RebootCmd();
-                printf("Service Characteristics Set\r\n");
-                rnbd_state.state=RNBD_CMD2;
+                Err=false;                
+                printf("Reboot Completed\r\n");
+                rnbd_state.state=RNBD_CMD3;
             }
         }
         break;
-        case RNBD_CMD2:
+        case RNBD_CMD3:
         {
-            if(data)
+            Err=RNBD_EnterCmdMode();
+            if(Err)
             {
-                data=false;
-                data=RNBD_EnterCmdMode();
-                printf("Reboot Completed\r\n");
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
                 rnbd_state.state=RNBD_WAIT;
             }
         }
+        break;
         case RNBD_WAIT:
         {
             
-            data=false;
+            Err=false;
             
             if(switchPressEvent == true)
             {
-                printf("!!! Measuring Heart Rate !!!\r\n");
                 switchPressEvent = false;
-                heartrate9_example();
-                rnbd_state.state=RNBD_SEND_HR_DATA;
+                printf("!!! Measuring Heart Rate !!!\r\n");                
+                heart_rate = heartrate9_example();                
+                if(heart_rate != -1)
+                {                
+                    rnbd_state.state=RNBD_SEND_HR_DATA;
+                }
+                else
+                {
+                    rnbd_state.state=RNBD_WAIT;
+                }         
             }
             else
             {
@@ -285,11 +305,14 @@ void RNBD_HEART_RATE(void)
         break;
         case RNBD_SEND_HR_DATA:
         {
-            data=false;
-            char handle[]="1002";            
-            data=RNBD_WriteLocalCharacteristic(handle,strlen(handle),HR_data,2);
-            rnbd_state.state=RNBD_WAIT;
-            
+            char handle[]="1002";
+            sprintf(HR_data,"%x",heart_rate);
+            Err=RNBD_WriteLocalCharacteristic(handle,strlen(handle),HR_data,2);
+            if(Err)
+            {
+            Err=false;
+            rnbd_state.state=RNBD_WAIT;  
+            }
         }
         break;
     }    
@@ -299,24 +322,14 @@ void RNBD_HEART_RATE(void)
 int main ( void )
 {
     /* Initialize all modules */
-    SYS_Initialize ( NULL );
-    printf("RNBD451_HEART_RATE_PROFILE\r\n");
-    init=RNBD_Init();
-    if(init == true)
-    {
-        printf("RNBD451_INITIALIZED\r\n");
-        rnbd_state.state=RNBD_INIT;        
-    }
-    else
-    {
-        printf("RNBD451_NOT_INITIALIZED\r\n");
-    }
-    
+    SYS_Initialize ( NULL );   
     EIC_CallbackRegister(EIC_PIN_15, Switch_Press_Handler, 0);
+    printf("RNBD451_HEART_RATE_PROFILE\r\n");
+    rnbd_state.state=RNBD_INIT;
 
     while ( true )
     {
-        RNBD_HEART_RATE();
+        RNBD_heartrate_example();
     }
 
     /* Execution should not come here during normal operation */

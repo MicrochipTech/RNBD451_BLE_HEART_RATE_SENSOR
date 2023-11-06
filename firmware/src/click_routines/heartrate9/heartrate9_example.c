@@ -51,22 +51,20 @@
 #include "definitions.h"                // SYS function prototypes
 #include "heartrate9.h"
 
-int8_t  heartrate_data;
-char HR_data[2] = "";
 /**
   Section: Example Code
  */
-void heartrate9_example(void) {
-    heartrate_data = -1;
+int8_t heartrate9_example(void) {
+    int8_t heartrate_data = -1;
     // Check the Heartrate Ready Status
     if(true == is_heartrate9_byte_ready())
     {
         // Return the Heartrate 
         while(heartrate_data == -1)
         {
-            heartrate_data      = heartrate9_read_byte();
+            heartrate_data = heartrate9_read_byte();
         }
-        sprintf(HR_data,"%x",heartrate_data);
         printf("Heartrate = %d bpm \t\r\n", (uint8_t)heartrate_data);
     }
+    return heartrate_data;
 }
