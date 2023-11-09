@@ -31,7 +31,7 @@ Checkout the <a href="https://microchipsupport.force.com/s/" target="_blank">Tec
 
 ## 1. Introduction<a name="step1">
 
-This application demonstrates how to add the RNBD451 Add-on Board to an existing application via UART and to implement a BLE heart rate sensor using HEART RATE 9 CLICK. Here we have taken an existing [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and added the RNBD451 Add-on Board to make it wireless. The RN commands are sent from the SAM E51 CURIOSITY NANO BOARD to establish the heart rate BLE sensor application, which can be viewed in the MBD application.
+This application demonstrates how to add the BLE to an existing non wireless application and to implement a BLE heart rate sensor using HEART RATE 9 CLICK. Here we have taken an existing [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and added the RNBD451 Add-on Board to make it wireless. The RN commands are sent from the SAM E51 CURIOSITY NANO BOARD to establish the heart rate BLE sensor application, which can be viewed in the MBD application.
 
 ![](docs/app.png)
 
