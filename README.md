@@ -31,6 +31,8 @@ Checkout the <a href="https://microchipsupport.force.com/s/" target="_blank">Tec
 
 ## 1. Introduction<a name="step1">
 
+### Getting started with RNBD451 Plug and Play Heart rate Sensor
+
 This application demonstrates how to add the BLE to an existing non wireless application and to implement a BLE heart rate sensor using HEART RATE 9 CLICK. Here we have taken an existing [Heart Rate application with SAME51](https://github.com/Microchip-MPLAB-Harmony/reference_apps/tree/master/apps/sam_e51_cnano/same51n_mikroe_click/heartrate9) and added the RNBD451 Add-on Board to make it wireless. The RN commands are sent from the SAM E51 CURIOSITY NANO BOARD to establish the heart rate BLE sensor application, which can be viewed in the MBD application.
 
 ![](docs/app.png)
@@ -70,7 +72,7 @@ This application demonstrates how to add the BLE to an existing non wireless app
 
 ## 5. Harmony MCC Configuration<a name="step5">
 
-### Getting started with adding RNBD451 Add-on Board to Heart Rate application with SAME51.
+### Updating the SAME51 Heart Rate application with RNBD451.
 
 | Tip | New users of MPLAB Code Configurator are recommended to go through the [overview](https://onlinedocs.microchip.com/pr/GUID-1F7007B8-9A46-4D03-AEED-650357BA760D-en-US-6/index.html?GUID-AFAB9227-B10C-4FAE-9785-98474664B50A) |
 | :- | :- |
