@@ -78,7 +78,8 @@ typedef enum
     RNBD_SERVICE_CHARACTERISTICS,
     RNBD_SERVICE_CHARACTERISTICS1,
     RNBD_SERVICE_CHARACTERISTICS2,
-    RNBD_SEND_HR_DATA, 
+    RNBD_SEND_HR_DATA,
+    RNBD_SEND_HRBS,
     RNBD_WAIT,   
             
 } STATES;
@@ -114,7 +115,7 @@ void RNBD_heartrate_example(void)
             if(Err)
             {
                 Err=false;
-                printf("RNBD451_INITIALIZED\r\n");
+                printf("RNBD451_INITIALIZING\r\n");
                 rnbd_state.state=RNBD_CMD;        
             }
         }
@@ -274,7 +275,20 @@ void RNBD_heartrate_example(void)
             {
                 Err=false;                
                 printf("Entered CMD Mode\r\n");
-                rnbd_state.state=RNBD_WAIT;
+                rnbd_state.state=RNBD_SEND_HRBS;
+            }
+        }
+        break;
+        case RNBD_SEND_HRBS:
+        {
+            char handle[]="1005,03";
+            Err=RNBD_WriteLocalCharacteristic(handle,strlen(handle),0,0);
+            if(Err)
+            {
+            Err=false;
+            printf("HRBS Set\r\n");
+            printf("Press the User Button to Start Measuring the Heart Rate\r\n");
+            rnbd_state.state=RNBD_WAIT;  
             }
         }
         break;

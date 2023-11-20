@@ -742,6 +742,9 @@ bool RNBD_WriteLocalCharacteristic(const char *handle, uint8_t handleLen, const 
         cmdBuf[4U + index] = handle[index];
     }
     index = index + 4U;
+    
+    if (dataLen != 0)
+    {
     cmdBuf[index++] = ',';
     cmdBuf[index++] = '0';
     cmdBuf[index++] = '0';
@@ -751,8 +754,15 @@ bool RNBD_WriteLocalCharacteristic(const char *handle, uint8_t handleLen, const 
         cmdBuf[11U + index] = data[index];
     }
     index = index + 11U;
-    cmdBuf[index++] = '\r';
-    cmdBuf[index] = '\n';
     
-	return RNBD_SendCommand_ReceiveResponse(cmdBuf, 15U, cmdPrompt, 10U);
+    cmdBuf[index++] = '\r';
+    cmdBuf[index] = '\n';    
+	return RNBD_SendCommand_ReceiveResponse(cmdBuf, 15U, cmdPrompt, 10U);      
+    }
+    else
+    {    
+    cmdBuf[index++] = '\r';
+    cmdBuf[index] = '\n';    
+	return RNBD_SendCommand_ReceiveResponse(cmdBuf, 13U, cmdPrompt, 10U);
+    }
 }
